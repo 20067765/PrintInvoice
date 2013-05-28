@@ -41,7 +41,7 @@ public class CashChequePanel extends JPanel {
 
 	private void addTextField(int width, int gridx, int gridy) {
 		JTextField jTextField = new JTextField();
-		jTextField.sets
+	
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
 		gridBagConstraints.gridwidth = 1;
 		gridBagConstraints.gridheight = 1;

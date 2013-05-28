@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
-import java.awt.print.Paper;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
@@ -17,7 +16,7 @@ import java.awt.print.PrinterJob;
  * @version 1.0, 2013-05-27
  */
 public class Printer implements Printable {
-	private Paper paper;
+	private AbstractBill bill;
 
 	@Override
 	public int print(Graphics graphics, PageFormat pageFormat, int pageIndex)
@@ -28,8 +27,9 @@ public class Printer implements Printable {
 		else {
 			Graphics2D g2 = (Graphics2D) graphics;
 			g2.setColor(Color.BLACK);
-			pageFormat.setPaper(paper);
-			drawCurrentPageText(g2, pageFormat);// 调用打印内容的方法
+			pageFormat.setPaper(bill);
+			g2.drawRect(0, 0, (int)bill.getWidth(), (int)bill.getHeight());
+
 			return PAGE_EXISTS;
 		}
 	}
@@ -72,10 +72,13 @@ public class Printer implements Printable {
 
 	public static void main(String[] args) {
 		Printer pm = new Printer();// 实例化打印类
+		Cheque cheque = new Cheque();
+		pm.setBill(cheque);
 		pm.starPrint();
 	}
 
-	public void setPaper(Paper paper) {
-		this.paper = paper;
+	public void setBill(AbstractBill bill) {
+		this.bill = bill;
 	}
+
 }
