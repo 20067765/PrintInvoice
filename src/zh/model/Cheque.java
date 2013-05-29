@@ -1,5 +1,10 @@
 package zh.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import zh.model.AbstractBill.PrintInfo;
+
 /**
  * 支票，现金支票和转账支票，要素和打印位置全部一样
  * 
@@ -47,6 +52,18 @@ public class Cheque extends AbstractBill {
 
 	public void setUse(String use) {
 		this.use = use;
+	}
+
+	@Override
+	public List<PrintInfo> getPrintInfos() {
+		List<PrintInfo> printInfos = new ArrayList<PrintInfo>();
+		printInfos.add(new PrintInfo(this.getDateInWords(),190,55));
+		return null;
+	}
+	
+	private String getDateInWords(){
+		
+		return null;
 	}
 
 }

@@ -28,7 +28,7 @@ public class Printer implements Printable {
 			Graphics2D g2 = (Graphics2D) graphics;
 			g2.setColor(Color.BLACK);
 			pageFormat.setPaper(bill);
-			g2.drawRect(0, 0, (int)bill.getWidth(), (int)bill.getHeight());
+			drawCurrentPageText(g2,pageFormat);
 
 			return PAGE_EXISTS;
 		}
@@ -38,14 +38,11 @@ public class Printer implements Printable {
 	private void drawCurrentPageText(Graphics2D g2, PageFormat pf) {
 		Font font = null;
 		// 设置打印的字体
-		font = new Font("新宋体", Font.BOLD, 11);
+		font = new Font("新宋体", Font.BOLD, 9);
 		g2.setFont(font);// 设置字体
 		// 此处打印一句话，打印开始位置是(200,200),表示从pf.getPaper()中座标为(200,200)开始打印
 		// 此处200的单位是1/72(inch)，inch:英寸，所以这里的长度，在测量后需要进行转换
-		int x = 11;
-		int y = 11;
-		g2.drawString("x:" + x + ",y:" + y, x, y);
-		g2.drawString("x:" + x + ",y:" + y, x, y+11);
+		g2.drawString("贰零壹叁     壹拾     壹拾", 190, 37);//55
 	}
 
 	// 连接打印机，弹出打印对话框
